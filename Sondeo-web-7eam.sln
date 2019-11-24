@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sondeo-web-7eam", "Sondeo-web-7eam.csproj", "{E77EDA56-02B4-4971-BF89-0EC0E450E11C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E77EDA56-02B4-4971-BF89-0EC0E450E11C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E77EDA56-02B4-4971-BF89-0EC0E450E11C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E77EDA56-02B4-4971-BF89-0EC0E450E11C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E77EDA56-02B4-4971-BF89-0EC0E450E11C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9ADC354C-AFDE-4E01-82C5-385A1687ADCF}
+	EndGlobalSection
+EndGlobal
