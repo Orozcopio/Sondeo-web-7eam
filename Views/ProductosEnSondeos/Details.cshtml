@@ -1,0 +1,34 @@
+﻿@model Sondeo_web_7eam.Models.ProductosEnSondeo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ProductosEnSondeo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCTO.ID_CATEGORIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCTO.ID_CATEGORIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SONDEO.DESCRIPCION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SONDEO.DESCRIPCION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

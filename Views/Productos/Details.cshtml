@@ -1,0 +1,74 @@
+﻿@model Sondeo_web_7eam.Models.PRODUCTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PRODUCTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCTO1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCTO1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRESENTACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRESENTACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRECIO_CONSULTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRECIO_CONSULTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORIA.CATEGORIA1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORIA.CATEGORIA1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MARCA.MARCA1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARCA.MARCA1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MEDIDA.UNIDAD_MEDIDA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MEDIDA.UNIDAD_MEDIDA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_PRODUCTO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

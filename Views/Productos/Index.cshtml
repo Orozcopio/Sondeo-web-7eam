@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Sondeo_web_7eam.Models.PRODUCTO>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTO1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRESENTACION)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRECIO_CONSULTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORIA.CATEGORIA1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MARCA.MARCA1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MEDIDA.UNIDAD_MEDIDA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCTO1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRESENTACION)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRECIO_CONSULTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MEDIDA.UNIDAD_MEDIDA)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PRODUCTO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_PRODUCTO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PRODUCTO })
+        </td>
+    </tr>
+}
+
+</table>

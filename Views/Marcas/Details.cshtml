@@ -1,0 +1,26 @@
+﻿@model Sondeo_web_7eam.Models.MARCA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MARCA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MARCA1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MARCA1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_MARCA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
