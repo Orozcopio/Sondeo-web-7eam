@@ -15,7 +15,7 @@ namespace Sondeo_web_7eam.Models
     public partial class REPORTE
     {
         public string ID_REPORTE { get; set; }
-        public string ID_SONDEO { get; set; }
+        public Nullable<int> ID_SONDEO { get; set; }
         public string ID_USUARIO { get; set; }
         public System.DateTime FECHA_REPORTE { get; set; }
     

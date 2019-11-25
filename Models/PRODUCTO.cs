@@ -14,12 +14,6 @@ namespace Sondeo_web_7eam.Models
     
     public partial class PRODUCTO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PRODUCTO()
-        {
-            this.ProductosEnSondeo = new HashSet<ProductosEnSondeo>();
-        }
-    
         public string ID_PRODUCTO { get; set; }
         public string ID_CATEGORIA { get; set; }
         public string UNIDAD_MEDIDA { get; set; }
@@ -28,12 +22,12 @@ namespace Sondeo_web_7eam.Models
         public string PRESENTACION { get; set; }
         public decimal PRECIO_CONSULTA { get; set; }
         public string TIPO { get; set; }
-        public bool ALPORMAYOR { get; set; }
+        public Nullable<bool> ALPORMAYOR { get; set; }
+        public int ID_SONDEO { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual MARCA MARCA { get; set; }
         public virtual MEDIDA MEDIDA { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductosEnSondeo> ProductosEnSondeo { get; set; }
+        public virtual SONDEO SONDEO { get; set; }
     }
 }

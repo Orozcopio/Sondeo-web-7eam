@@ -17,18 +17,19 @@ namespace Sondeo_web_7eam.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SONDEO()
         {
-            this.ProductosEnSondeo = new HashSet<ProductosEnSondeo>();
+            this.PRODUCTO = new HashSet<PRODUCTO>();
             this.REPORTE = new HashSet<REPORTE>();
         }
     
-        public string ID_SONDEO { get; set; }
+        public int ID_SONDEO { get; set; }
         public int ID_LOCAL { get; set; }
         public System.DateTime FECHA { get; set; }
         public string DESCRIPCION { get; set; }
+        public bool FINALIZADO { get; set; }
     
         public virtual LOCALIZACION LOCALIZACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductosEnSondeo> ProductosEnSondeo { get; set; }
+        public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REPORTE> REPORTE { get; set; }
     }
