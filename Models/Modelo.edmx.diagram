@@ -5,16 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d66d11aedcea4d3582c0974b1dddc7d8" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="7.375" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CLIENTE" Width="1.5" PointX="0.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="4.125" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="6.375" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="8.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="0.875" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SONDEO" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="6" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="9.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.USUARIO" Width="1.5" PointX="2.375" PointY="7.125" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_USUARIO_ES_CLIENTE" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" ManuallyRouted="false" />

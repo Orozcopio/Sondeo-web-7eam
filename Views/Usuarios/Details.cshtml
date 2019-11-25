@@ -1,0 +1,42 @@
+﻿@model Sondeo_web_7eam.Models.USUARIO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>USUARIO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.APELLIDO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.APELLIDO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_USUARIO }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

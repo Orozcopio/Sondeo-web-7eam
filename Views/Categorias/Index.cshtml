@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Sondeo_web_7eam.Models.CATEGORIA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORIA1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DESCRIPCION_CAT)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORIA1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DESCRIPCION_CAT)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_CATEGORIA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_CATEGORIA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_CATEGORIA })
+        </td>
+    </tr>
+}
+
+</table>

@@ -21,7 +21,7 @@ namespace Sondeo_web_7eam.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("UDconexion", throwIfV1Schema: false)
         {
         }
 

@@ -55,7 +55,7 @@ namespace Sondeo_web_7eam
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = false,
-                RequireDigit = true,
+                RequireDigit = false,
                 RequireLowercase = true,
                 RequireUppercase = false,
             };

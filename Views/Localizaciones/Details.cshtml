@@ -1,0 +1,50 @@
+﻿@model Sondeo_web_7eam.Models.LOCALIZACION
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LOCALIZACION</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LOCALIDAD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOCALIDAD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DEPARTAMENTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DEPARTAMENTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUNICIPIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUNICIPIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AREA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AREA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_LOCAL }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
