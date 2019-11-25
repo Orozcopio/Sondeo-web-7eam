@@ -26,6 +26,7 @@ namespace Sondeo_web_7eam.Models
         public System.DateTime FECHA { get; set; }
         public string DESCRIPCION { get; set; }
         public bool FINALIZADO { get; set; }
+        public string ID_USUARIO { get; set; }
     
         public virtual LOCALIZACION LOCALIZACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

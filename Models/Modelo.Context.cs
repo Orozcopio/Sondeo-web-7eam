@@ -13,10 +13,10 @@ namespace Sondeo_web_7eam.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ConexionUDxDB : DbContext
+    public partial class ConexionDB : DbContext
     {
-        public ConexionUDxDB()
-            : base("name=ConexionUDxDB")
+        public ConexionDB()
+            : base("name=ConexionDB")
         {
         }
     
@@ -25,8 +25,12 @@ namespace Sondeo_web_7eam.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
-        public virtual DbSet<CLIENTE> CLIENTE { get; set; }
         public virtual DbSet<LOCALIZACION> LOCALIZACION { get; set; }
         public virtual DbSet<MARCA> MARCA { get; set; }
         public virtual DbSet<MEDIDA> MEDIDA { get; set; }
@@ -34,6 +38,5 @@ namespace Sondeo_web_7eam.Models
         public virtual DbSet<REPORTE> REPORTE { get; set; }
         public virtual DbSet<SONDEO> SONDEO { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<USUARIO> USUARIO { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class SondeosController : Controller
     {
-        private ConexionUDxDB db = new ConexionUDxDB();
+        private ConexionDB db = new ConexionDB();
 
         // GET: Sondeos
         public ActionResult Index()
@@ -48,7 +48,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_SONDEO,ID_LOCAL,FECHA,DESCRIPCION,FINALIZADO")] SONDEO sONDEO)
+        public ActionResult Create([Bind(Include = "ID_SONDEO,ID_LOCAL,FECHA,DESCRIPCION,FINALIZADO,ID_USUARIO")] SONDEO sONDEO)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_SONDEO,ID_LOCAL,FECHA,DESCRIPCION,FINALIZADO")] SONDEO sONDEO)
+        public ActionResult Edit([Bind(Include = "ID_SONDEO,ID_LOCAL,FECHA,DESCRIPCION,FINALIZADO,ID_USUARIO")] SONDEO sONDEO)
         {
             if (ModelState.IsValid)
             {

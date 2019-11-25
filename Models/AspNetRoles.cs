@@ -12,19 +12,18 @@ namespace Sondeo_web_7eam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CLIENTE
+    public partial class AspNetRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CLIENTE()
+        public AspNetRoles()
         {
-            this.USUARIO = new HashSet<USUARIO>();
+            this.AspNetUsers = new HashSet<AspNetUsers>();
         }
     
-        public string DOCUMENTO { get; set; }
-        public string APELLIDO { get; set; }
-        public string NOMBRE { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIO { get; set; }
+        public virtual ICollection<AspNetUsers> AspNetUsers { get; set; }
     }
 }

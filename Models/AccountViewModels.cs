@@ -65,6 +65,10 @@ namespace Sondeo_web_7eam.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Nombre de usuario")]
+        public string UserName { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
         public string Email { get; set; }

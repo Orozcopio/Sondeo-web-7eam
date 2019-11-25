@@ -12,12 +12,12 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class ReportesController : Controller
     {
-        private ConexionUDxDB db = new ConexionUDxDB();
+        private ConexionDB db = new ConexionDB();
 
         // GET: Reportes
         public ActionResult Index()
         {
-            var rEPORTE = db.REPORTE.Include(r => r.SONDEO).Include(r => r.USUARIO);
+            var rEPORTE = db.REPORTE.Include(r => r.SONDEO);
             return View(rEPORTE.ToList());
         }
 
@@ -40,7 +40,6 @@ namespace Sondeo_web_7eam.Controllers
         public ActionResult Create()
         {
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION");
-            ViewBag.ID_USUARIO = new SelectList(db.USUARIO, "ID_USUARIO", "DOCUMENTO");
             return View();
         }
 
@@ -49,7 +48,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_REPORTE,ID_SONDEO,ID_USUARIO,FECHA_REPORTE")] REPORTE rEPORTE)
+        public ActionResult Create([Bind(Include = "C_REPORTE,ID_SONDEO,ID_USUARIO,FECHA_REPORTE")] REPORTE rEPORTE)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +58,6 @@ namespace Sondeo_web_7eam.Controllers
             }
 
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", rEPORTE.ID_SONDEO);
-            ViewBag.ID_USUARIO = new SelectList(db.USUARIO, "ID_USUARIO", "DOCUMENTO", rEPORTE.ID_USUARIO);
             return View(rEPORTE);
         }
 
@@ -76,7 +74,6 @@ namespace Sondeo_web_7eam.Controllers
                 return HttpNotFound();
             }
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", rEPORTE.ID_SONDEO);
-            ViewBag.ID_USUARIO = new SelectList(db.USUARIO, "ID_USUARIO", "DOCUMENTO", rEPORTE.ID_USUARIO);
             return View(rEPORTE);
         }
 
@@ -85,7 +82,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_REPORTE,ID_SONDEO,ID_USUARIO,FECHA_REPORTE")] REPORTE rEPORTE)
+        public ActionResult Edit([Bind(Include = "C_REPORTE,ID_SONDEO,ID_USUARIO,FECHA_REPORTE")] REPORTE rEPORTE)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +91,6 @@ namespace Sondeo_web_7eam.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", rEPORTE.ID_SONDEO);
-            ViewBag.ID_USUARIO = new SelectList(db.USUARIO, "ID_USUARIO", "DOCUMENTO", rEPORTE.ID_USUARIO);
             return View(rEPORTE);
         }
 

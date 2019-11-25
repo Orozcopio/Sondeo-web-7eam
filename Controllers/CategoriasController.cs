@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class CategoriasController : Controller
     {
-        private ConexionUDxDB db = new ConexionUDxDB();
+        private ConexionDB db = new ConexionDB();
 
         // GET: Categorias
         public ActionResult Index()

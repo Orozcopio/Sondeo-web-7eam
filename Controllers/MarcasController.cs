@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class MarcasController : Controller
     {
-        private ConexionUDxDB db = new ConexionUDxDB();
+        private ConexionDB db = new ConexionDB();
 
         // GET: Marcas
         public ActionResult Index()

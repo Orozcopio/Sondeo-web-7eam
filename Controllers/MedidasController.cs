@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class MedidasController : Controller
     {
-        private ConexionUDxDB db = new ConexionUDxDB();
+        private ConexionDB db = new ConexionDB();
 
         // GET: Medidas
         public ActionResult Index()

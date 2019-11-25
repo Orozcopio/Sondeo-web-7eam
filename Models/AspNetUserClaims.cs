@@ -12,13 +12,13 @@ namespace Sondeo_web_7eam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class REPORTE
+    public partial class AspNetUserClaims
     {
-        public string C_REPORTE { get; set; }
-        public Nullable<int> ID_SONDEO { get; set; }
-        public string ID_USUARIO { get; set; }
-        public System.DateTime FECHA_REPORTE { get; set; }
+        public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual SONDEO SONDEO { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }
