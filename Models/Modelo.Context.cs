@@ -13,10 +13,10 @@ namespace Sondeo_web_7eam.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ConexionDB : DbContext
+    public partial class ConexionDB_x : DbContext
     {
-        public ConexionDB()
-            : base("name=ConexionDB")
+        public ConexionDB_x()
+            : base("name=ConexionDB_x")
         {
         }
     

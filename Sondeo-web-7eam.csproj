@@ -175,7 +175,6 @@
     <Compile Include="Controllers\LocalizacionesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
-    <Compile Include="Controllers\MedidasController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\SondeosController.cs" />
@@ -322,21 +321,11 @@
     <Content Include="Views\Marcas\Details.cshtml" />
     <Content Include="Views\Marcas\Edit.cshtml" />
     <Content Include="Views\Marcas\Index.cshtml" />
-    <Content Include="Views\Medidas\Create.cshtml" />
-    <Content Include="Views\Medidas\Delete.cshtml" />
-    <Content Include="Views\Medidas\Details.cshtml" />
-    <Content Include="Views\Medidas\Edit.cshtml" />
-    <Content Include="Views\Medidas\Index.cshtml" />
     <Content Include="Views\Categorias\Create.cshtml" />
     <Content Include="Views\Categorias\Delete.cshtml" />
     <Content Include="Views\Categorias\Details.cshtml" />
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
-    <Content Include="Views\Productos\Create.cshtml" />
-    <Content Include="Views\Productos\Delete.cshtml" />
-    <Content Include="Views\Productos\Details.cshtml" />
-    <Content Include="Views\Productos\Edit.cshtml" />
-    <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Localizaciones\Create.cshtml" />
     <Content Include="Views\Localizaciones\Delete.cshtml" />
     <Content Include="Views\Localizaciones\Details.cshtml" />
@@ -352,6 +341,11 @@
     <Content Include="Views\Reportes\Details.cshtml" />
     <Content Include="Views\Reportes\Edit.cshtml" />
     <Content Include="Views\Reportes\Index.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

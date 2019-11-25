@@ -16,7 +16,7 @@ namespace Sondeo_web_7eam.Models
     {
         public string ID_PRODUCTO { get; set; }
         public string ID_CATEGORIA { get; set; }
-        public string UNIDAD_MEDIDA { get; set; }
+        public Nullable<int> UNIDAD_MEDIDA { get; set; }
         public string ID_MARCA { get; set; }
         public string PRODUCTO1 { get; set; }
         public string PRESENTACION { get; set; }

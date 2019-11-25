@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class ProductosController : Controller
     {
-        private ConexionDB db = new ConexionDB();
+        private ConexionDB_x db = new ConexionDB_x();
 
         // GET: Productos
         public ActionResult Index()
@@ -41,7 +41,7 @@ namespace Sondeo_web_7eam.Controllers
         {
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1");
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "UNIDAD_MEDIDA", "UNIDAD_MEDIDA");
+            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1");
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION");
             return View();
         }
@@ -62,7 +62,7 @@ namespace Sondeo_web_7eam.Controllers
 
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "UNIDAD_MEDIDA", "UNIDAD_MEDIDA", pRODUCTO.UNIDAD_MEDIDA);
+            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
             return View(pRODUCTO);
         }
@@ -81,7 +81,7 @@ namespace Sondeo_web_7eam.Controllers
             }
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "UNIDAD_MEDIDA", "UNIDAD_MEDIDA", pRODUCTO.UNIDAD_MEDIDA);
+            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
             return View(pRODUCTO);
         }
@@ -101,7 +101,7 @@ namespace Sondeo_web_7eam.Controllers
             }
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "UNIDAD_MEDIDA", "UNIDAD_MEDIDA", pRODUCTO.UNIDAD_MEDIDA);
+            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
             ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
             return View(pRODUCTO);
         }
