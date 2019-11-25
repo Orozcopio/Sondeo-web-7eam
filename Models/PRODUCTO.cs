@@ -28,6 +28,7 @@ namespace Sondeo_web_7eam.Models
         public string PRESENTACION { get; set; }
         public decimal PRECIO_CONSULTA { get; set; }
         public string TIPO { get; set; }
+        public bool ALPORMAYOR { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual MARCA MARCA { get; set; }
