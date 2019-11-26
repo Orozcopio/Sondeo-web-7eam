@@ -30,14 +30,15 @@
             @Html.DisplayNameFor(model => model.CANTIDAD_MEDIDA)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MEDIDA.MEDIDA1)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CATEGORIA.CATEGORIA1)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MARCA.MARCA1)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MEDIDA.MEDIDA1)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.SONDEO.DESCRIPCION)
         </th>
@@ -45,43 +46,52 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRODUCTO1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRESENTACION)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PRECIO_CONSULTA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TIPO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ALPORMAYOR)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SONDEO.DESCRIPCION)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_PRODUCTO }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_PRODUCTO }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_PRODUCTO })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRODUCTO1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRESENTACION)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PRECIO_CONSULTA)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TIPO)
+    </td>
+    <td>
+        @if (item.ALPORMAYOR == true)
+        {
+            <span>Precio al por Mayor</span>
+
+        }
+        else
+        {
+            <span>Precio unitario</span>
+        }
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.SONDEO.DESCRIPCION)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID_PRODUCTO }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID_PRODUCTO }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID_PRODUCTO })
+    </td>
+</tr>
 }
 
 </table>
