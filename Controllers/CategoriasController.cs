@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class CategoriasController : Controller
     {
-        private ConexionDB_x db = new ConexionDB_x();
+        private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Categorias
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Categorias/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -59,7 +59,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Categorias/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -90,7 +90,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Categorias/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace Sondeo_web_7eam.Controllers
         // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             CATEGORIA cATEGORIA = db.CATEGORIA.Find(id);
             db.CATEGORIA.Remove(cATEGORIA);

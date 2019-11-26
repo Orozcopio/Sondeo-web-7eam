@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class LocalizacionesController : Controller
     {
-        private ConexionDB_x db = new ConexionDB_x();
+        private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Localizaciones
         public ActionResult Index()

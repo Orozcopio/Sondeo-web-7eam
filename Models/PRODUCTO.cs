@@ -14,17 +14,17 @@ namespace Sondeo_web_7eam.Models
     
     public partial class PRODUCTO
     {
-        public string ID_PRODUCTO { get; set; }
-        public string ID_CATEGORIA { get; set; }
+        public int ID_PRODUCTO { get; set; }
+        public Nullable<int> ID_CATEGORIA { get; set; }
         public Nullable<int> UNIDAD_MEDIDA { get; set; }
-        public string ID_MARCA { get; set; }
+        public Nullable<int> ID_MARCA { get; set; }
         public string PRODUCTO1 { get; set; }
         public string PRESENTACION { get; set; }
         public decimal PRECIO_CONSULTA { get; set; }
         public string TIPO { get; set; }
-        public Nullable<bool> ALPORMAYOR { get; set; }
+        public bool ALPORMAYOR { get; set; }
         public int ID_SONDEO { get; set; }
-        public Nullable<decimal> CANTIDAD_MEDIDA { get; set; }
+        public decimal CANTIDAD_MEDIDA { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual MARCA MARCA { get; set; }

@@ -20,7 +20,7 @@ namespace Sondeo_web_7eam.Models
             this.PRODUCTO = new HashSet<PRODUCTO>();
         }
     
-        public string ID_CATEGORIA { get; set; }
+        public int ID_CATEGORIA { get; set; }
         public string CATEGORIA1 { get; set; }
         public string DESCRIPCION_CAT { get; set; }
     

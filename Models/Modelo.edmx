@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
@@ -70,7 +70,7 @@
           <Key>
             <PropertyRef Name="ID_CATEGORIA" />
           </Key>
-          <Property Name="ID_CATEGORIA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CATEGORIA" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="DESCRIPCION_CAT" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
@@ -88,7 +88,7 @@
           <Key>
             <PropertyRef Name="ID_MARCA" />
           </Key>
-          <Property Name="ID_MARCA" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID_MARCA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MARCA" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="MEDIDA">
@@ -102,17 +102,17 @@
           <Key>
             <PropertyRef Name="ID_PRODUCTO" />
           </Key>
-          <Property Name="ID_PRODUCTO" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="ID_CATEGORIA" Type="varchar" MaxLength="10" />
+          <Property Name="ID_PRODUCTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="int" />
           <Property Name="UNIDAD_MEDIDA" Type="int" />
-          <Property Name="ID_MARCA" Type="varchar" MaxLength="10" />
+          <Property Name="ID_MARCA" Type="int" />
           <Property Name="PRODUCTO" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRESENTACION" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PRECIO_CONSULTA" Type="numeric" Precision="8" Scale="2" Nullable="false" />
           <Property Name="TIPO" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ALPORMAYOR" Type="bit" />
+          <Property Name="ALPORMAYOR" Type="bit" Nullable="false" />
           <Property Name="ID_SONDEO" Type="int" Nullable="false" />
-          <Property Name="CANTIDAD_MEDIDA" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="CANTIDAD_MEDIDA" Type="numeric" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="REPORTE">
           <Key>
@@ -334,7 +334,8 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             <End Role="SONDEO" EntitySet="SONDEO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -401,10 +402,10 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Key>
             <PropertyRef Name="ID_CATEGORIA" />
           </Key>
-          <Property Name="ID_CATEGORIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_CATEGORIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CATEGORIA1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DESCRIPCION_CAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI" FromRole="CATEGORIA" ToRole="PRODUCTO" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_SE_CLASIF_CATEGORI" FromRole="CATEGORIA" ToRole="PRODUCTO" />
         </EntityType>
         <EntityType Name="LOCALIZACION">
           <Key>
@@ -421,9 +422,9 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Key>
             <PropertyRef Name="ID_MARCA" />
           </Key>
-          <Property Name="ID_MARCA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_MARCA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MARCA1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Model.FK_PRODUCTO_TIENE_MARCA" FromRole="MARCA" ToRole="PRODUCTO" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_TIENE_MARCA" FromRole="MARCA" ToRole="PRODUCTO" />
         </EntityType>
         <EntityType Name="MEDIDA">
           <Key>
@@ -431,7 +432,27 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           </Key>
           <Property Name="ID_MEDIDA" Type="Int32" Nullable="false" />
           <Property Name="MEDIDA1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Model.FK_PRODUCTO_MIDE_MEDIDA" FromRole="MEDIDA" ToRole="PRODUCTO" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_MIDE_MEDIDA" FromRole="MEDIDA" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="PRODUCTO">
+          <Key>
+            <PropertyRef Name="ID_PRODUCTO" />
+          </Key>
+          <Property Name="ID_PRODUCTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CATEGORIA" Type="Int32" />
+          <Property Name="UNIDAD_MEDIDA" Type="Int32" />
+          <Property Name="ID_MARCA" Type="Int32" />
+          <Property Name="PRODUCTO1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRESENTACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PRECIO_CONSULTA" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="TIPO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ALPORMAYOR" Type="Boolean" Nullable="false" />
+          <Property Name="ID_SONDEO" Type="Int32" Nullable="false" />
+          <Property Name="CANTIDAD_MEDIDA" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CATEGORIA" Relationship="Self.FK_PRODUCTO_SE_CLASIF_CATEGORI" FromRole="PRODUCTO" ToRole="CATEGORIA" />
+          <NavigationProperty Name="MARCA" Relationship="Self.FK_PRODUCTO_TIENE_MARCA" FromRole="PRODUCTO" ToRole="MARCA" />
+          <NavigationProperty Name="MEDIDA" Relationship="Self.FK_PRODUCTO_MIDE_MEDIDA" FromRole="PRODUCTO" ToRole="MEDIDA" />
+          <NavigationProperty Name="SONDEO" Relationship="Self.FK_SONDEO_SE_COMPON_PRODUCTO" FromRole="PRODUCTO" ToRole="SONDEO" />
         </EntityType>
         <EntityType Name="REPORTE">
           <Key>
@@ -454,8 +475,8 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Property Name="FINALIZADO" Type="Boolean" Nullable="false" />
           <Property Name="ID_USUARIO" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="LOCALIZACION" Relationship="Self.FK_SONDEO_SE_REALIZ_LOCALIZA" FromRole="SONDEO" ToRole="LOCALIZACION" />
+          <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_SONDEO_SE_COMPON_PRODUCTO" FromRole="SONDEO" ToRole="PRODUCTO" />
           <NavigationProperty Name="REPORTE" Relationship="Self.FK_REPORTE_GENERA_SONDEO" FromRole="SONDEO" ToRole="REPORTE" />
-          <NavigationProperty Name="PRODUCTO" Relationship="Model.FK_SONDEO_SE_COMPON_PRODUCTO" FromRole="SONDEO" ToRole="PRODUCTO" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -495,6 +516,18 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUCTO_SE_CLASIF_CATEGORI">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_CATEGORIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SONDEO_SE_REALIZ_LOCALIZA">
           <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="1" />
           <End Role="SONDEO" Type="Self.SONDEO" Multiplicity="*" />
@@ -504,6 +537,42 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             </Principal>
             <Dependent Role="SONDEO">
               <PropertyRef Name="ID_LOCAL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_TIENE_MARCA">
+          <End Role="MARCA" Type="Self.MARCA" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MARCA">
+              <PropertyRef Name="ID_MARCA" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_MARCA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTO_MIDE_MEDIDA">
+          <End Role="MEDIDA" Type="Self.MEDIDA" Multiplicity="0..1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MEDIDA">
+              <PropertyRef Name="ID_MEDIDA" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="UNIDAD_MEDIDA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SONDEO_SE_COMPON_PRODUCTO">
+          <End Role="SONDEO" Type="Self.SONDEO" Multiplicity="1" />
+          <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SONDEO">
+              <PropertyRef Name="ID_SONDEO" />
+            </Principal>
+            <Dependent Role="PRODUCTO">
+              <PropertyRef Name="ID_SONDEO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -523,7 +592,7 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="ConexionDB_x" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ConexionDBxUD" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
@@ -533,6 +602,7 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <EntitySet Name="LOCALIZACION" EntityType="Self.LOCALIZACION" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" />
           <EntitySet Name="MEDIDA" EntityType="Self.MEDIDA" />
+          <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
           <EntitySet Name="REPORTE" EntityType="Self.REPORTE" />
           <EntitySet Name="SONDEO" EntityType="Self.SONDEO" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -544,9 +614,25 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_SE_CLASIF_CATEGORI" Association="Self.FK_PRODUCTO_SE_CLASIF_CATEGORI">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
           <AssociationSet Name="FK_SONDEO_SE_REALIZ_LOCALIZA" Association="Self.FK_SONDEO_SE_REALIZ_LOCALIZA">
             <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
             <End Role="SONDEO" EntitySet="SONDEO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_TIENE_MARCA" Association="Self.FK_PRODUCTO_TIENE_MARCA">
+            <End Role="MARCA" EntitySet="MARCA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTO_MIDE_MEDIDA" Association="Self.FK_PRODUCTO_MIDE_MEDIDA">
+            <End Role="MEDIDA" EntitySet="MEDIDA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SONDEO_SE_COMPON_PRODUCTO" Association="Self.FK_SONDEO_SE_COMPON_PRODUCTO">
+            <End Role="SONDEO" EntitySet="SONDEO" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
           </AssociationSet>
           <AssociationSet Name="FK_REPORTE_GENERA_SONDEO" Association="Self.FK_REPORTE_GENERA_SONDEO">
             <End Role="SONDEO" EntitySet="SONDEO" />
@@ -556,98 +642,13 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="PRODUCTO" EntityType="Model.PRODUCTO" />
-          <AssociationSet Name="FK_PRODUCTO_SE_CLASIF_CATEGORI" Association="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTO_TIENE_MARCA" Association="Model.FK_PRODUCTO_TIENE_MARCA">
-            <End Role="MARCA" EntitySet="MARCA" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCTO_MIDE_MEDIDA" Association="Model.FK_PRODUCTO_MIDE_MEDIDA">
-            <End Role="MEDIDA" EntitySet="MEDIDA" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SONDEO_SE_COMPON_PRODUCTO" Association="Model.FK_SONDEO_SE_COMPON_PRODUCTO">
-            <End Role="SONDEO" EntitySet="SONDEO" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="PRODUCTO">
-          <Key>
-            <PropertyRef Name="ID_PRODUCTO" />
-          </Key>
-          <Property Name="ID_PRODUCTO" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="ID_CATEGORIA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="UNIDAD_MEDIDA" Type="Int32" />
-          <Property Name="ID_MARCA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="PRODUCTO1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PRESENTACION" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO_CONSULTA" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
-          <Property Name="TIPO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ALPORMAYOR" Type="Boolean" />
-          <Property Name="ID_SONDEO" Type="Int32" Nullable="false" />
-          <Property Name="CANTIDAD_MEDIDA" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="CATEGORIA" Relationship="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI" FromRole="PRODUCTO" ToRole="CATEGORIA" />
-          <NavigationProperty Name="MARCA" Relationship="Model.FK_PRODUCTO_TIENE_MARCA" FromRole="PRODUCTO" ToRole="MARCA" />
-          <NavigationProperty Name="MEDIDA" Relationship="Model.FK_PRODUCTO_MIDE_MEDIDA" FromRole="PRODUCTO" ToRole="MEDIDA" />
-          <NavigationProperty Name="SONDEO" Relationship="Model.FK_SONDEO_SE_COMPON_PRODUCTO" FromRole="PRODUCTO" ToRole="SONDEO" />
-        </EntityType>
-        <Association Name="FK_PRODUCTO_SE_CLASIF_CATEGORI">
-          <End Type="Model.CATEGORIA" Role="CATEGORIA" Multiplicity="0..1" />
-          <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIA">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Principal>
-            <Dependent Role="PRODUCTO">
-              <PropertyRef Name="ID_CATEGORIA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCTO_TIENE_MARCA">
-          <End Type="Model.MARCA" Role="MARCA" Multiplicity="0..1" />
-          <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MARCA">
-              <PropertyRef Name="ID_MARCA" />
-            </Principal>
-            <Dependent Role="PRODUCTO">
-              <PropertyRef Name="ID_MARCA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCTO_MIDE_MEDIDA">
-          <End Type="Model.MEDIDA" Role="MEDIDA" Multiplicity="0..1" />
-          <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MEDIDA">
-              <PropertyRef Name="ID_MEDIDA" />
-            </Principal>
-            <Dependent Role="PRODUCTO">
-              <PropertyRef Name="UNIDAD_MEDIDA" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SONDEO_SE_COMPON_PRODUCTO">
-          <End Type="Model.SONDEO" Role="SONDEO" Multiplicity="1" />
-          <End Type="Model.PRODUCTO" Role="PRODUCTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SONDEO">
-              <PropertyRef Name="ID_SONDEO" />
-            </Principal>
-            <Dependent Role="PRODUCTO">
-              <PropertyRef Name="ID_SONDEO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ConexionDB_x">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ConexionDBxUD">
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="Model.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
@@ -739,6 +740,23 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTO">
+            <EntityTypeMapping TypeName="Model.PRODUCTO">
+              <MappingFragment StoreEntitySet="PRODUCTO">
+                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
+                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
+                <ScalarProperty Name="UNIDAD_MEDIDA" ColumnName="UNIDAD_MEDIDA" />
+                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
+                <ScalarProperty Name="PRODUCTO1" ColumnName="PRODUCTO" />
+                <ScalarProperty Name="PRESENTACION" ColumnName="PRESENTACION" />
+                <ScalarProperty Name="PRECIO_CONSULTA" ColumnName="PRECIO_CONSULTA" />
+                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+                <ScalarProperty Name="ALPORMAYOR" ColumnName="ALPORMAYOR" />
+                <ScalarProperty Name="ID_SONDEO" ColumnName="ID_SONDEO" />
+                <ScalarProperty Name="CANTIDAD_MEDIDA" ColumnName="CANTIDAD_MEDIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="REPORTE">
             <EntityTypeMapping TypeName="Model.REPORTE">
               <MappingFragment StoreEntitySet="REPORTE">
@@ -780,23 +798,6 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="PRODUCTO">
-            <EntityTypeMapping TypeName="Model.PRODUCTO">
-              <MappingFragment StoreEntitySet="PRODUCTO">
-                <ScalarProperty Name="CANTIDAD_MEDIDA" ColumnName="CANTIDAD_MEDIDA" />
-                <ScalarProperty Name="ID_SONDEO" ColumnName="ID_SONDEO" />
-                <ScalarProperty Name="ALPORMAYOR" ColumnName="ALPORMAYOR" />
-                <ScalarProperty Name="TIPO" ColumnName="TIPO" />
-                <ScalarProperty Name="PRECIO_CONSULTA" ColumnName="PRECIO_CONSULTA" />
-                <ScalarProperty Name="PRESENTACION" ColumnName="PRESENTACION" />
-                <ScalarProperty Name="PRODUCTO1" ColumnName="PRODUCTO" />
-                <ScalarProperty Name="ID_MARCA" ColumnName="ID_MARCA" />
-                <ScalarProperty Name="UNIDAD_MEDIDA" ColumnName="UNIDAD_MEDIDA" />
-                <ScalarProperty Name="ID_CATEGORIA" ColumnName="ID_CATEGORIA" />
-                <ScalarProperty Name="ID_PRODUCTO" ColumnName="ID_PRODUCTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class SondeosController : Controller
     {
-        private ConexionDB_x db = new ConexionDB_x();
+        private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Sondeos
         public ActionResult Index()

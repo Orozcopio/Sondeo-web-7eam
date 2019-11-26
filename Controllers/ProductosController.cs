@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class ProductosController : Controller
     {
-        private ConexionDB_x db = new ConexionDB_x();
+        private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Productos
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Productos/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -51,27 +51,24 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,CANTIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO")] PRODUCTO pRODUCTO)
+        public ActionResult Create([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO,CANTIDAD_MEDIDA")] PRODUCTO pRODUCTO)
         {
-            if (!ModelState.IsValid)
-                return View();
-
-            try
+            if (ModelState.IsValid)
             {
                 db.PRODUCTO.Add(pRODUCTO);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
 
-                ModelState.AddModelError("", "Error al ingresar producto, intente nuevamente");
-                return View();
-            }
+            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
+            ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
+            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
+            ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
+            return View(pRODUCTO);
         }
 
         // GET: Productos/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -94,7 +91,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO")] PRODUCTO pRODUCTO)
+        public ActionResult Edit([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO,CANTIDAD_MEDIDA")] PRODUCTO pRODUCTO)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +107,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Productos/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -127,7 +124,7 @@ namespace Sondeo_web_7eam.Controllers
         // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             PRODUCTO pRODUCTO = db.PRODUCTO.Find(id);
             db.PRODUCTO.Remove(pRODUCTO);

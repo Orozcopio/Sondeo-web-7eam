@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Controllers
 {
     public class MarcasController : Controller
     {
-        private ConexionDB_x db = new ConexionDB_x();
+        private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Marcas
         public ActionResult Index()
@@ -21,7 +21,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Marcas/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -48,25 +48,18 @@ namespace Sondeo_web_7eam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_MARCA,MARCA1")] MARCA mARCA)
         {
-            if (!ModelState.IsValid)
-                return View();
-
-            try
+            if (ModelState.IsValid)
             {
                 db.MARCA.Add(mARCA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch (Exception)
-            {
 
-                ModelState.AddModelError("","Error al ingresar marca, intente nuevamente");
-                return View();
-            }
+            return View(mARCA);
         }
 
         // GET: Marcas/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -97,7 +90,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Marcas/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -114,7 +107,7 @@ namespace Sondeo_web_7eam.Controllers
         // POST: Marcas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             MARCA mARCA = db.MARCA.Find(id);
             db.MARCA.Remove(mARCA);

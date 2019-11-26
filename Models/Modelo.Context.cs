@@ -13,10 +13,10 @@ namespace Sondeo_web_7eam.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ConexionDB_x : DbContext
+    public partial class ConexionDBxUD : DbContext
     {
-        public ConexionDB_x()
-            : base("name=ConexionDB_x")
+        public ConexionDBxUD()
+            : base("name=ConexionDBxUD")
         {
         }
     
@@ -34,9 +34,9 @@ namespace Sondeo_web_7eam.Models
         public virtual DbSet<LOCALIZACION> LOCALIZACION { get; set; }
         public virtual DbSet<MARCA> MARCA { get; set; }
         public virtual DbSet<MEDIDA> MEDIDA { get; set; }
+        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<REPORTE> REPORTE { get; set; }
         public virtual DbSet<SONDEO> SONDEO { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
     }
 }
