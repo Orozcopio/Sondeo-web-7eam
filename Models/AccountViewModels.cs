@@ -49,9 +49,8 @@ namespace Sondeo_web_7eam.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Nombre de Usuario")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
