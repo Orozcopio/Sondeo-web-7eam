@@ -24,6 +24,7 @@ namespace Sondeo_web_7eam.Models
         public string TIPO { get; set; }
         public Nullable<bool> ALPORMAYOR { get; set; }
         public int ID_SONDEO { get; set; }
+        public Nullable<decimal> CANTIDAD_MEDIDA { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
         public virtual MARCA MARCA { get; set; }

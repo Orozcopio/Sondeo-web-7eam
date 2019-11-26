@@ -34,9 +34,9 @@ namespace Sondeo_web_7eam.Models
         public virtual DbSet<LOCALIZACION> LOCALIZACION { get; set; }
         public virtual DbSet<MARCA> MARCA { get; set; }
         public virtual DbSet<MEDIDA> MEDIDA { get; set; }
-        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<REPORTE> REPORTE { get; set; }
         public virtual DbSet<SONDEO> SONDEO { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
     }
 }

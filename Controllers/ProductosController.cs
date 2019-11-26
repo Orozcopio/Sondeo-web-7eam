@@ -51,20 +51,23 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO")] PRODUCTO pRODUCTO)
+        public ActionResult Create([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,CANTIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO")] PRODUCTO pRODUCTO)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+                return View();
+
+            try
             {
                 db.PRODUCTO.Add(pRODUCTO);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            catch (Exception)
+            {
 
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
-            ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
-            ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
-            return View(pRODUCTO);
+                ModelState.AddModelError("", "Error al ingresar producto, intente nuevamente");
+                return View();
+            }
         }
 
         // GET: Productos/Edit/5
