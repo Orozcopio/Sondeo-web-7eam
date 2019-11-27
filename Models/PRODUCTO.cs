@@ -11,19 +11,39 @@ namespace Sondeo_web_7eam.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     public partial class PRODUCTO
     {
+        [Required]
+        [Index(IsUnique = true)]
+        [Display(Name = "Ingrese el ID del producto")]
         public string ID_PRODUCTO { get; set; }
+        [Required]
+        [Display(Name = "Seleccione el ID de su Categoria")]
         public string ID_CATEGORIA { get; set; }
+        [Required]
+        [Display(Name = "Ingrese su Unidad de Medida ")]
         public Nullable<int> UNIDAD_MEDIDA { get; set; }
+        [Required]
+        [Display(Name = "Seleccione el ID de la Marca del producto")]
         public string ID_MARCA { get; set; }
+        [Required]
+        [Display(Name = "Ingrese el nombre del Producto")]
         public string PRODUCTO1 { get; set; }
+        [Required]
+        [Display(Name = "Ingrese el tamaño de la presentación")]
         public string PRESENTACION { get; set; }
+        [Required]
+        [Display(Name = "Ingrese el precio del Producto")]
         public decimal PRECIO_CONSULTA { get; set; }
+        [Required]
+        [Display(Name = "Ingrese el tipo del Producto en esa Presentacion")]
         public string TIPO { get; set; }
         public Nullable<bool> ALPORMAYOR { get; set; }
         public int ID_SONDEO { get; set; }
+        [Required]
+        [Display(Name = "Ingrese el Peso del Producto( En su Unidad de Medida)")]
         public Nullable<decimal> CANTIDAD_MEDIDA { get; set; }
     
         public virtual CATEGORIA CATEGORIA { get; set; }
