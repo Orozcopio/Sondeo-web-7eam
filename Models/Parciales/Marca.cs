@@ -8,7 +8,7 @@ using System.Web;
 namespace Sondeo_web_7eam.Models.Parciales
 {
 
-    public class MarcaParcial
+    public class MarcaCE
     {
         [Required]
         [Index(IsUnique = true)]
@@ -22,7 +22,7 @@ namespace Sondeo_web_7eam.Models.Parciales
     }
 
 
-    [MetadataType(typeof(MarcaParcial))]
+    [MetadataType(typeof(MarcaCE))]
     public partial class MARCA
     {
         
