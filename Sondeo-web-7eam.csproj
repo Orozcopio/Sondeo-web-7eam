@@ -227,6 +227,7 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Parciales\Marca.cs" />
+    <Compile Include="Models\Parciales\Producto.cs" />
     <Compile Include="Models\PRODUCTO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
