@@ -18,16 +18,16 @@ namespace Sondeo_web_7eam.Models
         [Required]
         [Index(IsUnique = true)]
         [Display(Name = "Ingrese el ID del producto")]
-        public string ID_PRODUCTO { get; set; }
+        public int ID_PRODUCTO { get; set; }
         [Required]
         [Display(Name = "Seleccione el ID de su Categoria")]
-        public string ID_CATEGORIA { get; set; }
+        public int ID_CATEGORIA { get; set; }
         [Required]
         [Display(Name = "Ingrese su Unidad de Medida ")]
         public Nullable<int> UNIDAD_MEDIDA { get; set; }
         [Required]
         [Display(Name = "Seleccione el ID de la Marca del producto")]
-        public string ID_MARCA { get; set; }
+        public int ID_MARCA { get; set; }
         [Required]
         [Display(Name = "Ingrese el nombre del Producto")]
         public string PRODUCTO1 { get; set; }
