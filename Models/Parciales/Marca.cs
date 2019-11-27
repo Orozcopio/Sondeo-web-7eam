@@ -12,7 +12,7 @@ namespace Sondeo_web_7eam.Models.Parciales
     {
         [Required]
         [Index(IsUnique = true)]
-        [Display(Name = "Codigo de Marca:")]
+        [Display(Name = "Codigo de Marca: ")]  
         public int ID_MARCA { get; set; } 
 
 
