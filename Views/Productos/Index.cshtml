@@ -4,92 +4,115 @@
     ViewBag.Title = "Index";
 }
 
+@section estilos
+{
+    <link href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
 <h2>Productos disponibles</h2>
 
 <p>
     @Html.ActionLink("Agregar nuevo", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-           <span>Producto</span>
-        </th>
-        <th>
-           <span>Presentacion</span>
-        </th>
-        <th>
-            <span>Precio</span>
-        </th>
-        <th>
-            <span>Tipo</span>
-        </th>
-        <th>
-           <span>Tipo de precio</span>
-        </th>
-        <th>
-           <span>Categoria</span>
-        </th>
-        <th>
-            <span>Marca</span>
-        </th>
-        <th>
-            <span>Unidad de Medida</span>
-        </th>
-        <th>
-           <span>Cantidad medida</span>
-        </th>
-        <th>
-            <span>Sondeo</span>
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="tableProductos">
+    <thead>
+        <tr>
+            <th>
+                <span>Producto</span>
+            </th>
+            <th>
+                <span>Presentacion</span>
+            </th>
+            <th>
+                <span>Precio</span>
+            </th>
+            <th>
+                <span>Tipo</span>
+            </th>
+            <th>
+                <span>Tipo de precio</span>
+            </th>
+            <th>
+                <span>Categoria</span>
+            </th>
+            <th>
+                <span>Marca</span>
+            </th>
+            <th>
+                <span>Unidad de Medida</span>
+            </th>
+            <th>
+                <span>Cantidad medida</span>
+            </th>
+            <th>
+                <span>Sondeo</span>
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.PRODUCTO1)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PRESENTACION)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PRECIO_CONSULTA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.TIPO)
-    </td>
-    <td>
-        @if (item.ALPORMAYOR == true)
-        {
-            <span>Precio al por Mayor</span>
+    </thead>
+    <tbody>
 
-        }
-        else
+        @foreach (var item in Model)
         {
-            <span>Precio unitario</span>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCTO1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRESENTACION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRECIO_CONSULTA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TIPO)
+                </td>
+                <td>
+                    @if (item.ALPORMAYOR == true)
+                    {
+                        <span>Precio al por Mayor</span>
+
+                    }
+                    else
+                    {
+                        <span>Precio unitario</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SONDEO.DESCRIPCION)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.ID_PRODUCTO }) |
+                    @Html.ActionLink("Visualizar", "Details", new { id = item.ID_PRODUCTO }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PRODUCTO })
+                </td>
+            </tr>
         }
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.SONDEO.DESCRIPCION)
-    </td>
-    <td>
-        @Html.ActionLink("Editar", "Edit", new { id = item.ID_PRODUCTO }) |
-        @Html.ActionLink("Visualizar", "Details", new { id = item.ID_PRODUCTO }) |
-        @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PRODUCTO })
-    </td>
-</tr>
-}
+
+    </tbody>
+    
+
+    
 
 </table>
+
+@section scripts
+{
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $('#tableProductos').DataTable();
+    </script>
+    }
