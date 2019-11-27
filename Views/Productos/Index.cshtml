@@ -101,18 +101,17 @@
                 </td>
             </tr>
         }
-
     </tbody>
-    
-
-    
-
 </table>
 
 @section scripts
 {
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script>
-        $('#tableProductos').DataTable();
+        $('#tableProductos').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+            }
+        });
     </script>
     }

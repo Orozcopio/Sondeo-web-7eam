@@ -10,6 +10,7 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
+    [Authorize(Roles = "usuariodefinitivo")]
     public class LocalizacionessController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
