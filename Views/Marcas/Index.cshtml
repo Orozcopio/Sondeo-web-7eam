@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Sondeo_web_7eam.Models.MARCA>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Marcas Registradas";
 }
 
 <h2>Index</h2>
@@ -12,9 +12,11 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MARCA1)
+            <samp>ID Marca</samp>
         </th>
-        <th></th>
+        <th>
+            <samp>Nombre de Marca</samp>
+        </th>
     </tr>
 
 @foreach (var item in Model) {

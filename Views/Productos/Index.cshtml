@@ -4,41 +4,40 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Productos disponibles</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Agregar nuevo", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PRODUCTO1)
+           <samp>Nombre</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PRESENTACION)
+           <samp>Presentacion(Tamaño)</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PRECIO_CONSULTA)
+            <samp>Precio</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TIPO)
+            <samp>Presentacion(Tipo)</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ALPORMAYOR)
+           <samp>Al por mayor</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CANTIDAD_MEDIDA)
+           <samp>Categoria</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MEDIDA.MEDIDA1)
+            <samp>Marca</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CATEGORIA.CATEGORIA1)
+            <samp>Unidad de Medida</samp>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.MARCA.MARCA1)
+           <samp>Medida en Peso</samp>
         </th>
-
         <th>
             @Html.DisplayNameFor(model => model.SONDEO.DESCRIPCION)
         </th>
@@ -71,24 +70,23 @@
         }
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
-    </td>
-    <td>
         @Html.DisplayFor(modelItem => item.CATEGORIA.CATEGORIA1)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.MARCA.MARCA1)
     </td>
-
+    <td>
+        @Html.DisplayFor(modelItem => item.MEDIDA.MEDIDA1)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CANTIDAD_MEDIDA)
+    </td>
     <td>
         @Html.DisplayFor(modelItem => item.SONDEO.DESCRIPCION)
     </td>
     <td>
         @Html.ActionLink("Editar", "Edit", new { id = item.ID_PRODUCTO }) |
-        @Html.ActionLink("Detalles", "Details", new { id = item.ID_PRODUCTO }) |
+        @Html.ActionLink("Visualizar", "Details", new { id = item.ID_PRODUCTO }) |
         @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_PRODUCTO })
     </td>
 </tr>
