@@ -233,6 +233,8 @@
     <Compile Include="Models\MUNICIPIOS.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Parciales\CategoriaParcial.cs" />
+    <Compile Include="Models\Parciales\MarcasParcial.cs" />
     <Compile Include="Models\PRODUCTO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
@@ -449,7 +451,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Parciales\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
