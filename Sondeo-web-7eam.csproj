@@ -173,6 +173,7 @@
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalizacionesController.cs" />
+    <Compile Include="Controllers\LocalizacionessController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
@@ -200,6 +201,9 @@
     <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DEPARTAMENTOS.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LOCALIZACION.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
@@ -225,6 +229,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Modelo.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MUNICIPIOS.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PRODUCTO.cs">
       <DependentUpon>Modelo.tt</DependentUpon>

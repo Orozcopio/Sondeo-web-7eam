@@ -17,7 +17,8 @@ namespace Sondeo_web_7eam.Controllers
         // GET: Localizaciones
         public ActionResult Index()
         {
-            return View(db.LOCALIZACION.ToList());
+            var lOCALIZACION = db.LOCALIZACION.Include(l => l.DEPARTAMENTOS).Include(l => l.MUNICIPIOS);
+            return View(lOCALIZACION.ToList());
         }
 
         // GET: Localizaciones/Details/5
@@ -38,6 +39,8 @@ namespace Sondeo_web_7eam.Controllers
         // GET: Localizaciones/Create
         public ActionResult Create()
         {
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO");
+            ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO");
             return View();
         }
 
@@ -55,6 +58,8 @@ namespace Sondeo_web_7eam.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
+            ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
         }
 
@@ -70,6 +75,8 @@ namespace Sondeo_web_7eam.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
+            ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
         }
 
@@ -86,6 +93,8 @@ namespace Sondeo_web_7eam.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
+            ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
         }
 

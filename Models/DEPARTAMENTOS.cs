@@ -12,23 +12,18 @@ namespace Sondeo_web_7eam.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LOCALIZACION
+    public partial class DEPARTAMENTOS
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public LOCALIZACION()
+        public DEPARTAMENTOS()
         {
-            this.SONDEO = new HashSet<SONDEO>();
+            this.LOCALIZACION = new HashSet<LOCALIZACION>();
         }
     
-        public int ID_LOCAL { get; set; }
-        public string LOCALIDAD { get; set; }
-        public int DEPARTAMENTO { get; set; }
-        public int MUNICIPIO { get; set; }
-        public string AREA { get; set; }
+        public int ID_DEPTO { get; set; }
+        public string DEPARTAMENTO { get; set; }
     
-        public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
-        public virtual MUNICIPIOS MUNICIPIOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SONDEO> SONDEO { get; set; }
+        public virtual ICollection<LOCALIZACION> LOCALIZACION { get; set; }
     }
 }

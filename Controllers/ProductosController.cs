@@ -53,18 +53,27 @@ namespace Sondeo_web_7eam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID_PRODUCTO,ID_CATEGORIA,UNIDAD_MEDIDA,ID_MARCA,PRODUCTO1,PRESENTACION,PRECIO_CONSULTA,TIPO,ALPORMAYOR,ID_SONDEO,CANTIDAD_MEDIDA")] PRODUCTO pRODUCTO)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.PRODUCTO.Add(pRODUCTO);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.PRODUCTO.Add(pRODUCTO);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
-            ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
-            ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
-            ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
-            return View(pRODUCTO);
+                ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1", pRODUCTO.ID_CATEGORIA);
+                ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1", pRODUCTO.ID_MARCA);
+                ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1", pRODUCTO.UNIDAD_MEDIDA);
+                ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION", pRODUCTO.ID_SONDEO);
+                return View(pRODUCTO);
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Ocurrio un error al intentar agregar un producto");
+                    return View();
+            }
         }
 
         // GET: Productos/Edit/5

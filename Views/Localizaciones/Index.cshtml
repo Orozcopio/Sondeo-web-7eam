@@ -15,13 +15,13 @@
             @Html.DisplayNameFor(model => model.LOCALIDAD)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DEPARTAMENTO)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MUNICIPIO)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.AREA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPARTAMENTOS.DEPARTAMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MUNICIPIOS.MUNICIPIO)
         </th>
         <th></th>
     </tr>
@@ -32,13 +32,13 @@
             @Html.DisplayFor(modelItem => item.LOCALIDAD)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DEPARTAMENTO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MUNICIPIO)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.AREA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DEPARTAMENTOS.DEPARTAMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MUNICIPIOS.MUNICIPIO)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_LOCAL }) |

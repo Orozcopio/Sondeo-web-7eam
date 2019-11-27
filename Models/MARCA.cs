@@ -11,8 +11,7 @@ namespace Sondeo_web_7eam.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    
     public partial class MARCA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,13 +19,8 @@ namespace Sondeo_web_7eam.Models
         {
             this.PRODUCTO = new HashSet<PRODUCTO>();
         }
-
-        [Required]
-        [Index(IsUnique = true)]
-        [Display(Name = "Codigo de Marca:")]
+    
         public int ID_MARCA { get; set; }
-        [Index(IsUnique = true)]
-        [Display(Name = "Nombre de la Marca:")]
         public string MARCA1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

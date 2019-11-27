@@ -4,23 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2734a8e705924e03ab3d27caabd0bb3b" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="7.75" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="7.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="12.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="12.25" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="10" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="5.25" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="5.25" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.SONDEO" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="7.25" IsExpanded="true" />
+      <Diagram DiagramId="da95c3131b954259870fe79ad368fbae" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="9.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="14.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="14.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.DEPARTAMENTOS" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.MUNICIPIOS" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.PRODUCTO" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.REPORTE" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.SONDEO" Width="1.5" PointX="5.25" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagrams" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_DEPARTAMENTOS" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_MUNICIPIOS" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_TIENE_MARCA" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_MIDE_MEDIDA" ManuallyRouted="false" />

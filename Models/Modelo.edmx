@@ -74,14 +74,21 @@
           <Property Name="CATEGORIA" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="DESCRIPCION_CAT" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="DEPARTAMENTOS">
+          <Key>
+            <PropertyRef Name="ID_DEPTO" />
+          </Key>
+          <Property Name="ID_DEPTO" Type="int" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="LOCALIZACION">
           <Key>
             <PropertyRef Name="ID_LOCAL" />
           </Key>
           <Property Name="ID_LOCAL" Type="int" Nullable="false" />
           <Property Name="LOCALIDAD" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DEPARTAMENTO" Type="varchar" MaxLength="25" Nullable="false" />
-          <Property Name="MUNICIPIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="int" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="int" Nullable="false" />
           <Property Name="AREA" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="MARCA">
@@ -97,6 +104,13 @@
           </Key>
           <Property Name="ID_MEDIDA" Type="int" Nullable="false" />
           <Property Name="MEDIDA" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MUNICIPIOS">
+          <Key>
+            <PropertyRef Name="ID_MUN" />
+          </Key>
+          <Property Name="ID_MUN" Type="int" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCTO">
           <Key>
@@ -200,6 +214,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LOCALIZACION_DEPARTAMENTOS">
+          <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="1" />
+          <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS">
+              <PropertyRef Name="ID_DEPTO" />
+            </Principal>
+            <Dependent Role="LOCALIZACION">
+              <PropertyRef Name="DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIZACION_MUNICIPIOS">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="ID_MUN" />
+            </Principal>
+            <Dependent Role="LOCALIZACION">
+              <PropertyRef Name="MUNICIPIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUCTO_MIDE_MEDIDA">
           <End Role="MEDIDA" Type="Self.MEDIDA" Multiplicity="0..1" />
           <End Role="PRODUCTO" Type="Self.PRODUCTO" Multiplicity="*" />
@@ -286,9 +324,11 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LOCALIZACION" EntityType="Self.LOCALIZACION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MEDIDA" EntityType="Self.MEDIDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MUNICIPIOS" EntityType="Self.MUNICIPIOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REPORTE" EntityType="Self.REPORTE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SONDEO" EntityType="Self.SONDEO" Schema="dbo" store:Type="Tables" />
@@ -308,6 +348,14 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIZACION_DEPARTAMENTOS" Association="Self.FK_LOCALIZACION_DEPARTAMENTOS">
+            <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+            <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIZACION_MUNICIPIOS" Association="Self.FK_LOCALIZACION_MUNICIPIOS">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCTO_MIDE_MEDIDA" Association="Self.FK_PRODUCTO_MIDE_MEDIDA">
             <End Role="MEDIDA" EntitySet="MEDIDA" />
@@ -407,15 +455,25 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Property Name="DESCRIPCION_CAT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_SE_CLASIF_CATEGORI" FromRole="CATEGORIA" ToRole="PRODUCTO" />
         </EntityType>
+        <EntityType Name="DEPARTAMENTOS">
+          <Key>
+            <PropertyRef Name="ID_DEPTO" />
+          </Key>
+          <Property Name="ID_DEPTO" Type="Int32" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LOCALIZACION" Relationship="Self.FK_LOCALIZACION_DEPARTAMENTOS" FromRole="DEPARTAMENTOS" ToRole="LOCALIZACION" />
+        </EntityType>
         <EntityType Name="LOCALIZACION">
           <Key>
             <PropertyRef Name="ID_LOCAL" />
           </Key>
           <Property Name="ID_LOCAL" Type="Int32" Nullable="false" />
           <Property Name="LOCALIDAD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DEPARTAMENTO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MUNICIPIO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEPARTAMENTO" Type="Int32" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="Int32" Nullable="false" />
           <Property Name="AREA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTOS" Relationship="Self.FK_LOCALIZACION_DEPARTAMENTOS" FromRole="LOCALIZACION" ToRole="DEPARTAMENTOS" />
+          <NavigationProperty Name="MUNICIPIOS" Relationship="Self.FK_LOCALIZACION_MUNICIPIOS" FromRole="LOCALIZACION" ToRole="MUNICIPIOS" />
           <NavigationProperty Name="SONDEO" Relationship="Self.FK_SONDEO_SE_REALIZ_LOCALIZA" FromRole="LOCALIZACION" ToRole="SONDEO" />
         </EntityType>
         <EntityType Name="MARCA">
@@ -433,6 +491,14 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Property Name="ID_MEDIDA" Type="Int32" Nullable="false" />
           <Property Name="MEDIDA1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PRODUCTO" Relationship="Self.FK_PRODUCTO_MIDE_MEDIDA" FromRole="MEDIDA" ToRole="PRODUCTO" />
+        </EntityType>
+        <EntityType Name="MUNICIPIOS">
+          <Key>
+            <PropertyRef Name="ID_MUN" />
+          </Key>
+          <Property Name="ID_MUN" Type="Int32" Nullable="false" />
+          <Property Name="MUNICIPIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LOCALIZACION" Relationship="Self.FK_LOCALIZACION_MUNICIPIOS" FromRole="MUNICIPIOS" ToRole="LOCALIZACION" />
         </EntityType>
         <EntityType Name="PRODUCTO">
           <Key>
@@ -528,6 +594,30 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_LOCALIZACION_DEPARTAMENTOS">
+          <End Role="DEPARTAMENTOS" Type="Self.DEPARTAMENTOS" Multiplicity="1" />
+          <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTOS">
+              <PropertyRef Name="ID_DEPTO" />
+            </Principal>
+            <Dependent Role="LOCALIZACION">
+              <PropertyRef Name="DEPARTAMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCALIZACION_MUNICIPIOS">
+          <End Role="MUNICIPIOS" Type="Self.MUNICIPIOS" Multiplicity="1" />
+          <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MUNICIPIOS">
+              <PropertyRef Name="ID_MUN" />
+            </Principal>
+            <Dependent Role="LOCALIZACION">
+              <PropertyRef Name="MUNICIPIO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SONDEO_SE_REALIZ_LOCALIZA">
           <End Role="LOCALIZACION" Type="Self.LOCALIZACION" Multiplicity="1" />
           <End Role="SONDEO" Type="Self.SONDEO" Multiplicity="*" />
@@ -599,9 +689,11 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" />
+          <EntitySet Name="DEPARTAMENTOS" EntityType="Self.DEPARTAMENTOS" />
           <EntitySet Name="LOCALIZACION" EntityType="Self.LOCALIZACION" />
           <EntitySet Name="MARCA" EntityType="Self.MARCA" />
           <EntitySet Name="MEDIDA" EntityType="Self.MEDIDA" />
+          <EntitySet Name="MUNICIPIOS" EntityType="Self.MUNICIPIOS" />
           <EntitySet Name="PRODUCTO" EntityType="Self.PRODUCTO" />
           <EntitySet Name="REPORTE" EntityType="Self.REPORTE" />
           <EntitySet Name="SONDEO" EntityType="Self.SONDEO" />
@@ -617,6 +709,14 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <AssociationSet Name="FK_PRODUCTO_SE_CLASIF_CATEGORI" Association="Self.FK_PRODUCTO_SE_CLASIF_CATEGORI">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIZACION_DEPARTAMENTOS" Association="Self.FK_LOCALIZACION_DEPARTAMENTOS">
+            <End Role="DEPARTAMENTOS" EntitySet="DEPARTAMENTOS" />
+            <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCALIZACION_MUNICIPIOS" Association="Self.FK_LOCALIZACION_MUNICIPIOS">
+            <End Role="MUNICIPIOS" EntitySet="MUNICIPIOS" />
+            <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
           </AssociationSet>
           <AssociationSet Name="FK_SONDEO_SE_REALIZ_LOCALIZA" Association="Self.FK_SONDEO_SE_REALIZ_LOCALIZA">
             <End Role="LOCALIZACION" EntitySet="LOCALIZACION" />
@@ -713,6 +813,14 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DEPARTAMENTOS">
+            <EntityTypeMapping TypeName="Model.DEPARTAMENTOS">
+              <MappingFragment StoreEntitySet="DEPARTAMENTOS">
+                <ScalarProperty Name="ID_DEPTO" ColumnName="ID_DEPTO" />
+                <ScalarProperty Name="DEPARTAMENTO" ColumnName="DEPARTAMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="LOCALIZACION">
             <EntityTypeMapping TypeName="Model.LOCALIZACION">
               <MappingFragment StoreEntitySet="LOCALIZACION">
@@ -737,6 +845,14 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
               <MappingFragment StoreEntitySet="MEDIDA">
                 <ScalarProperty Name="ID_MEDIDA" ColumnName="ID_MEDIDA" />
                 <ScalarProperty Name="MEDIDA1" ColumnName="MEDIDA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MUNICIPIOS">
+            <EntityTypeMapping TypeName="Model.MUNICIPIOS">
+              <MappingFragment StoreEntitySet="MUNICIPIOS">
+                <ScalarProperty Name="ID_MUN" ColumnName="ID_MUN" />
+                <ScalarProperty Name="MUNICIPIO" ColumnName="MUNICIPIO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
