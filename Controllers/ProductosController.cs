@@ -24,6 +24,35 @@ namespace Sondeo_web_7eam.Controllers
             return View(pRODUCTO.ToList());
         }
 
+        public ActionResult sinProductos()
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    string logeado = User.Identity.Name.ToString();
+                    int axis = db.PRODUCTO.Where(a => a.SONDEO.ID_USUARIO == logeado).First().ID_PRODUCTO;
+                    if (axis <=0)
+                    {
+                        ModelState.AddModelError("", "No se puede finalizar un sondeo vacio");
+                        return View();
+                    }
+                    else
+                        return RedirectToAction("../Sondeos/FinalizarSondeo");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "No se puede finalizar un sondeo vacio");
+                    return View();
+
+                }
+
+            }
+
+
+            return View();
+        }
+
         // GET: Productos/Details/5
         [Authorize(Roles = "encuestador")]
         public ActionResult Details(int? id)
@@ -62,6 +91,9 @@ namespace Sondeo_web_7eam.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    string encuestador = User.Identity.Name;
+                    int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == encuestador).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+                    pRODUCTO.ID_SONDEO = ultimo;
                     db.PRODUCTO.Add(pRODUCTO);
                     db.SaveChanges();
                     return RedirectToAction("Index");

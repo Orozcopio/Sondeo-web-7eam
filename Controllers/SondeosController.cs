@@ -10,6 +10,7 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
+    //[Authorize(Roles="usuariodefinitivo")]
     public class SondeosController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
@@ -36,6 +37,7 @@ namespace Sondeo_web_7eam.Controllers
             return View(sONDEO);
         }
 
+        [Authorize(Roles = "encuestador")]
         public ActionResult NuevoSondeo()
         {
             try
@@ -60,6 +62,35 @@ namespace Sondeo_web_7eam.Controllers
             }
 
             return RedirectToAction("../Index");
+        }
+
+        public ActionResult FinalizarSondeo()
+        {
+            try
+            {
+                string encuestador = User.Identity.Name;
+                int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == encuestador).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+                bool estado = db.SONDEO.Where(a => a.ID_SONDEO == ultimo).First().FINALIZADO;
+                if (!estado)
+                {
+                    SONDEO sONDEO = db.SONDEO.Find(ultimo);
+                    sONDEO.FINALIZADO = true;
+                    db.Entry(sONDEO).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                   
+                }
+            }
+            catch (Exception)
+            {
+
+                ModelState.AddModelError("", "Algo salio mal, intente nuevamente");
+                return View();
+            }
+            return View();
         }
 
         // GET: Sondeos/Create
@@ -93,8 +124,17 @@ namespace Sondeo_web_7eam.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "Algo salio mal, intente nuevamente"+ex);
-                    return View(sONDEO);
+                    if(sONDEO.ID_LOCAL<=0)
+                    {
+                        ModelState.AddModelError("", "Algo salio mal, intente nuevamente");
+                        return RedirectToAction("../Localizaciones/Create");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Algo salio mal, intente nuevamente");
+                        return View(sONDEO);
+                    }
+                        
                 }
                 
             }
