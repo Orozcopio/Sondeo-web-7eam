@@ -42,7 +42,12 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AREA, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.AREA, new { htmlAttributes = new { @class = "form-control" } })
+                <select class="form-control" id="AREA" name="AREA">
+                    <option value="Mercado municipal">Marcado Municipal</option>
+                    <option value="Supermercado">Supermercado</option>
+                    <option value="Tienda local">Tienda local</option>
+                    <option value="Otro">Otro</option>
+                </select>
                 @Html.ValidationMessageFor(model => model.AREA, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,14 +62,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar y avanzar" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Cancelar", "Index")
 </div>
 
 @section Scripts {

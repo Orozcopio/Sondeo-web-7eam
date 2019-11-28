@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Sondeo_web_7eam.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
@@ -54,19 +50,47 @@ namespace Sondeo_web_7eam.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
+                if((lOCALIZACION.DEPARTAMENTO==1&&(lOCALIZACION.MUNICIPIO>=1&&lOCALIZACION.MUNICIPIO<=12))||
+                    (lOCALIZACION.DEPARTAMENTO == 1 && (lOCALIZACION.MUNICIPIO >= 1 && lOCALIZACION.MUNICIPIO <= 12))||
+                    (lOCALIZACION.DEPARTAMENTO == 2 && (lOCALIZACION.MUNICIPIO >= 13 && lOCALIZACION.MUNICIPIO <= 21))||
+                    (lOCALIZACION.DEPARTAMENTO == 3 && (lOCALIZACION.MUNICIPIO >= 22 && lOCALIZACION.MUNICIPIO <= 54))||
+                    (lOCALIZACION.DEPARTAMENTO == 4 && (lOCALIZACION.MUNICIPIO >= 55 && lOCALIZACION.MUNICIPIO <= 70))||
+                    (lOCALIZACION.DEPARTAMENTO == 5 && (lOCALIZACION.MUNICIPIO >= 71 && lOCALIZACION.MUNICIPIO <= 92))||
+                    (lOCALIZACION.DEPARTAMENTO == 6 && (lOCALIZACION.MUNICIPIO >= 93 && lOCALIZACION.MUNICIPIO <= 114))||
+                    (lOCALIZACION.DEPARTAMENTO == 7 && (lOCALIZACION.MUNICIPIO >= 115 && lOCALIZACION.MUNICIPIO <= 132))||
+                    (lOCALIZACION.DEPARTAMENTO == 8 && (lOCALIZACION.MUNICIPIO >= 133 && lOCALIZACION.MUNICIPIO <= 158))||
+                    (lOCALIZACION.DEPARTAMENTO == 9 && (lOCALIZACION.MUNICIPIO >= 159 && lOCALIZACION.MUNICIPIO <= 178))||
+                    (lOCALIZACION.DEPARTAMENTO == 10 && (lOCALIZACION.MUNICIPIO >= 179 && lOCALIZACION.MUNICIPIO <= 197))||
+                    (lOCALIZACION.DEPARTAMENTO == 11 && (lOCALIZACION.MUNICIPIO >= 196 && lOCALIZACION.MUNICIPIO <= 210))||
+                    (lOCALIZACION.DEPARTAMENTO == 12 && (lOCALIZACION.MUNICIPIO >= 211 && lOCALIZACION.MUNICIPIO <= 223))||
+                    (lOCALIZACION.DEPARTAMENTO == 13 && (lOCALIZACION.MUNICIPIO >= 224 && lOCALIZACION.MUNICIPIO <= 239))||
+                    (lOCALIZACION.DEPARTAMENTO == 14 && (lOCALIZACION.MUNICIPIO >= 240 && lOCALIZACION.MUNICIPIO <= 262))
+                    )
                 {
-                    string logeado = User.Identity.Name.ToString();
-                    lOCALIZACION.CreadoPor = db.AspNetUsers.First(a => a.UserName == logeado).Id;
-                    db.LOCALIZACION.Add(lOCALIZACION);
-                    db.SaveChanges();
-                    return RedirectToAction("../Sondeos/Create");
+                    try
+                    {
+                        string logeado = User.Identity.Name.ToString();
+                        lOCALIZACION.CreadoPor = db.AspNetUsers.First(a => a.UserName == logeado).Id;
+                        db.LOCALIZACION.Add(lOCALIZACION);
+                        db.SaveChanges();
+                        return RedirectToAction("../Sondeos/Create");
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError("", "Ocurrio un error al ingresar la localizacion, intente nuevamente");
+                        return View();
+                    }
+
                 }
-                catch
+                else
                 {
-                    ModelState.AddModelError("", "Ocurrio un error al ingresar la localizacion, intente nuevamente");
+                    ModelState.AddModelError("", "Hay un error en la localidad de Departamento o Municipio");
+                    ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email", lOCALIZACION.CreadoPor);
+                    ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
+                    ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
                     return View();
                 }
+                
             }
 
             ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email", lOCALIZACION.CreadoPor);
@@ -125,6 +149,42 @@ namespace Sondeo_web_7eam.Controllers
                 return HttpNotFound();
             }
             return View(lOCALIZACION);
+        }
+
+        
+
+        public ActionResult cancelar()
+        {
+
+
+            try
+            {
+                string logeado = User.Identity.Name.ToString();
+                string u = db.AspNetUsers.First(a => a.UserName == logeado).Id;
+                int ultimo = db.LOCALIZACION.Where(a => a.CreadoPor == u).OrderByDescending(x => x.ID_LOCAL).First().ID_LOCAL;
+                string ban = ultimo.ToString();
+                if(ban==null)
+                {
+                    ModelState.AddModelError("", "Algo salio mal, intente nuevamente");
+                    return RedirectToAction("../Localizaciones/Create");
+                }
+                else
+                {
+                    LOCALIZACION lOCALIZACION = db.LOCALIZACION.Find(ultimo);
+                    db.LOCALIZACION.Remove(lOCALIZACION);
+                    db.SaveChanges();
+                }
+                
+            }
+            catch
+            {
+                ModelState.AddModelError("", "Algo salio mal, intente nuevamente");
+                return RedirectToAction("../Localizaciones/Create");
+            }
+            
+
+
+            return RedirectToAction("../Localizaciones/Create");
         }
 
         // POST: Localizaciones/Delete/5
