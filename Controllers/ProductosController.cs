@@ -20,7 +20,9 @@ namespace Sondeo_web_7eam.Controllers
         public ActionResult Index()
         {
             string encuestador = User.Identity.Name;
-            var pRODUCTO = db.PRODUCTO.Where(a => a.SONDEO.ID_USUARIO==encuestador).Include(p => p.CATEGORIA).Include(p => p.MARCA).Include(p => p.MEDIDA).Include(p => p.SONDEO);
+            int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == encuestador).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+            bool estado = db.SONDEO.Where(a => a.ID_SONDEO == ultimo).First().FINALIZADO;
+            var pRODUCTO = db.PRODUCTO.Where(a => a.SONDEO.ID_USUARIO==encuestador).Where(b => b.SONDEO.FINALIZADO == false).Include(p => p.CATEGORIA).Include(p => p.MARCA).Include(p => p.MEDIDA).Include(p => p.SONDEO);
             return View(pRODUCTO.ToList());
         }
 
@@ -73,6 +75,31 @@ namespace Sondeo_web_7eam.Controllers
         [Authorize(Roles = "encuestador")]
         public ActionResult Create()
         {
+            //Probar antes
+            string encuestador = User.Identity.Name;
+            int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == encuestador).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+            bool estado = db.SONDEO.Where(a => a.ID_SONDEO == ultimo).First().FINALIZADO;
+
+            if (!estado)//encuesta no finalizada
+            {
+                ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");
+                ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1");
+                ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1");
+                ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION");
+                return View();
+            }
+            else
+            {
+                //Mensaje Flotante
+                ModelState.AddModelError("", "Ocurrio un error al intentar agregar un producto");
+                ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");
+                ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1");
+                ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1");
+                ViewBag.ID_SONDEO = new SelectList(db.SONDEO, "ID_SONDEO", "DESCRIPCION");
+                return View();
+            }
+            //Fin
+
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");
             ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1");
             ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1");
