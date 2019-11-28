@@ -10,19 +10,22 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
-    [Authorize(Roles = "usuariodefinitivo")]
+    [Authorize(Roles = "usuariodefinitivo,encuestador")]
     public class ProductosController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Productos
+        [Authorize(Roles = "encuestador")]
         public ActionResult Index()
         {
-            var pRODUCTO = db.PRODUCTO.Include(p => p.CATEGORIA).Include(p => p.MARCA).Include(p => p.MEDIDA).Include(p => p.SONDEO);
+            string encuestador = User.Identity.Name;
+            var pRODUCTO = db.PRODUCTO.Where(a => a.SONDEO.ID_USUARIO==encuestador).Include(p => p.CATEGORIA).Include(p => p.MARCA).Include(p => p.MEDIDA).Include(p => p.SONDEO);
             return View(pRODUCTO.ToList());
         }
 
         // GET: Productos/Details/5
+        [Authorize(Roles = "encuestador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,6 +41,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Productos/Create
+        [Authorize(Roles = "encuestador")]
         public ActionResult Create()
         {
             ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");

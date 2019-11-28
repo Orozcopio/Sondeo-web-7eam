@@ -143,7 +143,7 @@
           <Key>
             <PropertyRef Name="ID_SONDEO" />
           </Key>
-          <Property Name="ID_SONDEO" Type="int" Nullable="false" />
+          <Property Name="ID_SONDEO" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_LOCAL" Type="int" Nullable="false" />
           <Property Name="FECHA" Type="datetime" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar" MaxLength="1024" Nullable="false" />
@@ -539,7 +539,7 @@ advertencia 6035: La relación 'FK_SONDEO_AspNetUsers' tiene columnas que no for
           <Key>
             <PropertyRef Name="ID_SONDEO" />
           </Key>
-          <Property Name="ID_SONDEO" Type="Int32" Nullable="false" />
+          <Property Name="ID_SONDEO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_LOCAL" Type="Int32" Nullable="false" />
           <Property Name="FECHA" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
