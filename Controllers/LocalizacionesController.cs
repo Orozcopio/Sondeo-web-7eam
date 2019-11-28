@@ -156,7 +156,6 @@ namespace Sondeo_web_7eam.Controllers
         public ActionResult cancelar()
         {
 
-
             try
             {
                 string logeado = User.Identity.Name.ToString();

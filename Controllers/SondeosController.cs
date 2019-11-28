@@ -52,9 +52,25 @@ namespace Sondeo_web_7eam.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.SONDEO.Add(sONDEO);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    string logeado = User.Identity.Name.ToString();
+                    string u = db.AspNetUsers.First(a => a.UserName == logeado).Id;
+                    int local = db.LOCALIZACION.Where(a => a.CreadoPor == u).OrderByDescending(x => x.ID_LOCAL).First().ID_LOCAL;
+                    sONDEO.ID_USUARIO = logeado;
+                    sONDEO.FECHA = DateTime.Today;
+                    sONDEO.ID_LOCAL = local;
+                   
+                    db.SONDEO.Add(sONDEO);
+                    db.SaveChanges();
+                    return RedirectToAction("../Productos/Index");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Algo salio mal, intente nuevamente"+ex);
+                    return View(sONDEO);
+                }
+                
             }
 
             ViewBag.ID_LOCAL = new SelectList(db.LOCALIZACION, "ID_LOCAL", "LOCALIDAD", sONDEO.ID_LOCAL);

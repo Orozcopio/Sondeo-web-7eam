@@ -7,10 +7,10 @@
       <Diagram DiagramId="da95c3131b954259870fe79ad368fbae" Name="Diagram1">
         <EntityTypeShape EntityType="Model.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="9.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="14.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaims" Width="1.5" PointX="14.25" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUserLogins" Width="1.5" PointX="14.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="9.75" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEPARTAMENTOS" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
@@ -28,10 +28,29 @@
         <AssociationConnector Association="Model.FK_REPORTE_GENERA_SONDEO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="17.25" PointY="2.125" />
-        <AssociationConnector Association="Model.FK_LOCALIZACION_AspNetUsers" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_AspNetUsers" ManuallyRouted="true" >
+          <ConnectorPoint PointX="13.5" PointY="1.875" />
+          <ConnectorPoint PointX="13.5" PointY="1.66875" />
+          <ConnectorPoint PointX="13.770833333333336" PointY="1.66875" />
+          <ConnectorPoint PointX="14.406250000000004" PointY="1.25" />
+          <ConnectorPoint PointX="14.309895833333338" PointY="1.25" />
+          <ConnectorPoint PointX="14.309895833333338" PointY="1.6875" />
+          <ConnectorPoint PointX="14.505208333333336" PointY="1.6875" />
+          <ConnectorPoint PointX="14.505208333333336" PointY="1.75" />
+          <ConnectorPoint PointX="15.916666666666666" PointY="1.7499999999999993" />
+          <ConnectorPoint PointX="16.083333333333332" PointY="1.75" />
+          <ConnectorPoint PointX="16.875" PointY="1.75" />
+          <ConnectorPoint PointX="17.25" PointY="2.125" />
+        </AssociationConnector>
         <AssociationConnector Association="Model.FK_LOCALIZACION_DEPARTAMENTOS" />
         <AssociationConnector Association="Model.FK_LOCALIZACION_MUNICIPIOS" />
-        <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" />
+        <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" ManuallyRouted="true" >
+          <ConnectorPoint PointX="17.25" PointY="2.9950696145833398" />
+          <ConnectorPoint PointX="16" PointY="2.9950696145833398" />
+          <ConnectorPoint PointX="16" PointY="0.81510416666666674" />
+          <ConnectorPoint PointX="6" PointY="0.81510416666666674" />
+          <ConnectorPoint PointX="6" PointY="3.625" />
+        </AssociationConnector>
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
