@@ -11,8 +11,7 @@ namespace Sondeo_web_7eam.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class CATEGORIA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +21,6 @@ namespace Sondeo_web_7eam.Models
         }
     
         public int ID_CATEGORIA { get; set; }
-        [Display(Name="Categoria")]
         public string CATEGORIA1 { get; set; }
         public string DESCRIPCION_CAT { get; set; }
     

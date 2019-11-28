@@ -10,7 +10,7 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
-    [Authorize(Roles = "usuariodefinitivo")]
+    [Authorize(Roles = "usuariodefinitivo,admin")]
     public class MarcasController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();

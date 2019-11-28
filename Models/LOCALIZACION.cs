@@ -25,7 +25,10 @@ namespace Sondeo_web_7eam.Models
         public int DEPARTAMENTO { get; set; }
         public int MUNICIPIO { get; set; }
         public string AREA { get; set; }
+        public string CreadoPor { get; set; }
+        public string DIRECCION { get; set; }
     
+        public virtual AspNetUsers AspNetUsers { get; set; }
         public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
         public virtual MUNICIPIOS MUNICIPIOS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

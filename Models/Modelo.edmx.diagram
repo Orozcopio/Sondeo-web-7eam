@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CATEGORIA" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.DEPARTAMENTOS" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MARCA" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MEDIDA" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.MUNICIPIOS" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
@@ -23,15 +22,17 @@
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_SE_CLASIF_CATEGORI" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_LOCALIZACION_DEPARTAMENTOS" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_LOCALIZACION_MUNICIPIOS" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_TIENE_MARCA" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_PRODUCTO_MIDE_MEDIDA" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SONDEO_SE_COMPON_PRODUCTO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_REPORTE_GENERA_SONDEO" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="Model.LOCALIZACION" Width="1.5" PointX="17.25" PointY="2.125" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_AspNetUsers" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_DEPARTAMENTOS" />
+        <AssociationConnector Association="Model.FK_LOCALIZACION_MUNICIPIOS" />
+        <AssociationConnector Association="Model.FK_SONDEO_SE_REALIZ_LOCALIZA" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

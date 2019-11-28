@@ -32,7 +32,6 @@ namespace Sondeo_web_7eam.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<DEPARTAMENTOS> DEPARTAMENTOS { get; set; }
-        public virtual DbSet<LOCALIZACION> LOCALIZACION { get; set; }
         public virtual DbSet<MARCA> MARCA { get; set; }
         public virtual DbSet<MEDIDA> MEDIDA { get; set; }
         public virtual DbSet<MUNICIPIOS> MUNICIPIOS { get; set; }
@@ -40,5 +39,6 @@ namespace Sondeo_web_7eam.Models
         public virtual DbSet<REPORTE> REPORTE { get; set; }
         public virtual DbSet<SONDEO> SONDEO { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<LOCALIZACION> LOCALIZACION { get; set; }
     }
 }

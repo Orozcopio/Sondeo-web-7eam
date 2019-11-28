@@ -28,10 +28,10 @@ namespace Sondeo_web_7eam.Models
         public bool FINALIZADO { get; set; }
         public string ID_USUARIO { get; set; }
     
-        public virtual LOCALIZACION LOCALIZACION { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<REPORTE> REPORTE { get; set; }
+        public virtual LOCALIZACION LOCALIZACION { get; set; }
     }
 }

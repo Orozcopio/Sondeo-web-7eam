@@ -10,7 +10,6 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
-    [Authorize(Roles ="usuariodefinitivo")]
     public class LocalizacionesController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
@@ -18,7 +17,7 @@ namespace Sondeo_web_7eam.Controllers
         // GET: Localizaciones
         public ActionResult Index()
         {
-            var lOCALIZACION = db.LOCALIZACION.Include(l => l.DEPARTAMENTOS).Include(l => l.MUNICIPIOS);
+            var lOCALIZACION = db.LOCALIZACION.Include(l => l.AspNetUsers).Include(l => l.DEPARTAMENTOS).Include(l => l.MUNICIPIOS);
             return View(lOCALIZACION.ToList());
         }
 
@@ -40,6 +39,7 @@ namespace Sondeo_web_7eam.Controllers
         // GET: Localizaciones/Create
         public ActionResult Create()
         {
+            ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO");
             ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO");
             return View();
@@ -50,15 +50,26 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID_LOCAL,LOCALIDAD,DEPARTAMENTO,MUNICIPIO,AREA")] LOCALIZACION lOCALIZACION)
+        public ActionResult Create([Bind(Include = "ID_LOCAL,LOCALIDAD,DEPARTAMENTO,MUNICIPIO,AREA,CreadoPor,DIRECCION")] LOCALIZACION lOCALIZACION)
         {
             if (ModelState.IsValid)
             {
-                db.LOCALIZACION.Add(lOCALIZACION);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    string logeado = User.Identity.Name.ToString();
+                    lOCALIZACION.CreadoPor = db.AspNetUsers.First(a => a.UserName == logeado).Id;
+                    db.LOCALIZACION.Add(lOCALIZACION);
+                    db.SaveChanges();
+                    return RedirectToAction("../Sondeos/Create");
+                }
+                catch
+                {
+                    ModelState.AddModelError("", "Ocurrio un error al ingresar la localizacion, intente nuevamente");
+                    return View();
+                }
             }
 
+            ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email", lOCALIZACION.CreadoPor);
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
             ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
@@ -76,6 +87,7 @@ namespace Sondeo_web_7eam.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email", lOCALIZACION.CreadoPor);
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
             ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
@@ -86,7 +98,7 @@ namespace Sondeo_web_7eam.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID_LOCAL,LOCALIDAD,DEPARTAMENTO,MUNICIPIO,AREA")] LOCALIZACION lOCALIZACION)
+        public ActionResult Edit([Bind(Include = "ID_LOCAL,LOCALIDAD,DEPARTAMENTO,MUNICIPIO,AREA,CreadoPor,DIRECCION")] LOCALIZACION lOCALIZACION)
         {
             if (ModelState.IsValid)
             {
@@ -94,6 +106,7 @@ namespace Sondeo_web_7eam.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CreadoPor = new SelectList(db.AspNetUsers, "Id", "Email", lOCALIZACION.CreadoPor);
             ViewBag.DEPARTAMENTO = new SelectList(db.DEPARTAMENTOS, "ID_DEPTO", "DEPARTAMENTO", lOCALIZACION.DEPARTAMENTO);
             ViewBag.MUNICIPIO = new SelectList(db.MUNICIPIOS, "ID_MUN", "MUNICIPIO", lOCALIZACION.MUNICIPIO);
             return View(lOCALIZACION);
