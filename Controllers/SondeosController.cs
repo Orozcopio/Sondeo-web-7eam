@@ -36,6 +36,32 @@ namespace Sondeo_web_7eam.Controllers
             return View(sONDEO);
         }
 
+        public ActionResult NuevoSondeo()
+        {
+            try
+            {
+                string encuestador = User.Identity.Name;
+                int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == encuestador).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+                bool estado = db.SONDEO.Where(a => a.ID_SONDEO == ultimo).First().FINALIZADO;
+                if (estado)
+                {
+                    return RedirectToAction("../Localizaciones/Create");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Parece que ya hay un sondeo en curso");
+                    return RedirectToAction("../Productos/Index");
+                }
+            }
+            catch (Exception)
+            {
+                //redireccionar
+                return RedirectToAction("../Localizaciones/Create");
+            }
+
+            return RedirectToAction("../Index");
+        }
+
         // GET: Sondeos/Create
         public ActionResult Create()
         {
