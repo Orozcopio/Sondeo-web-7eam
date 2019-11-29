@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Microsoft.AspNet.Identity;
 using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
@@ -16,9 +18,18 @@ namespace Sondeo_web_7eam.Controllers
         private ConexionDBxUD db = new ConexionDBxUD();
 
         // GET: Sondeos
+        [Authorize(Roles = "usuariodefinitivo,admin")]
         public ActionResult Index()
         {
             var sONDEO = db.SONDEO.Include(s => s.LOCALIZACION);
+            return View(sONDEO.ToList());
+        }
+
+        [Authorize(Roles = "encuestador")]
+        public ActionResult MisSondeos()
+        {
+            string encuestador = User.Identity.Name;
+            var sONDEO = db.SONDEO.Where(a=>a.ID_USUARIO==encuestador).Include(s => s.LOCALIZACION);
             return View(sONDEO.ToList());
         }
 
@@ -64,6 +75,7 @@ namespace Sondeo_web_7eam.Controllers
             return RedirectToAction("../Index");
         }
 
+        [Authorize(Roles = "encuestador")]
         public ActionResult FinalizarSondeo()
         {
             try
@@ -94,6 +106,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Sondeos/Create
+        [Authorize(Roles = "encuestador")]
         public ActionResult Create()
         {
             ViewBag.ID_LOCAL = new SelectList(db.LOCALIZACION, "ID_LOCAL", "LOCALIDAD");
@@ -177,6 +190,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Sondeos/Delete/5
+        [Authorize(Roles ="encuestador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

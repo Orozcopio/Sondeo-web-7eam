@@ -12,7 +12,7 @@
 <h2>Productos en el ultimo sondeo</h2>
 
 <p>
-    @Html.ActionLink("Agregar nuevo", "Create")
+    @Html.ActionLink("Agregar nuevo al sondeo activo", "Create", new { }, new { @class = "btn btn-primary"})
 </p>
 <table class="table" id="tableProductos">
     <thead>
@@ -98,11 +98,48 @@
     </tbody>
 </table>
 
-@Html.ActionLink("Finalizar Encuesta", "sinProductos")
+<a id="finalizar" class="btn btn-danger" href="../Productos/sinProductos">Finalizar Encuesta</a>
 
 @section scripts
 {
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $("finalizar").submit(function (event))
+        {
+            event.preventDefault();
+
+            var post_url = $(this).attr("action");
+            var request_method = $(this).attr("method");
+
+            $.ajax({
+                url: post_url,
+                type: request_method,
+                data: form_data
+            }).done(function (response) { //
+                console.log(response);
+                LoadingOverlayHide("#tableProductos");
+                if (response.ok) {
+                    alert("Sondeo finalizadocorrectamente.");
+                    window.location = response.toRedirect;
+                }
+                else {
+                    alert(response.msg);
+                }
+        }
+    </script>
+    
+    <script>
+        function sinProductos()
+        {
+            $.alert({
+                title: 'Peligro',
+                content: 'No se puede finalizar un sondeo vacio',
+            });
+        }
+    </script>
+
+   
+
     <script>
         $('#tableProductos').DataTable({
             "language": {

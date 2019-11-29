@@ -26,6 +26,7 @@ namespace Sondeo_web_7eam.Controllers
             return View(pRODUCTO.ToList());
         }
 
+
         public ActionResult sinProductos()
         {
             if (ModelState.IsValid)
@@ -37,7 +38,7 @@ namespace Sondeo_web_7eam.Controllers
                     if (axis <=0)
                     {
                         ModelState.AddModelError("", "No se puede finalizar un sondeo vacio");
-                        return View();
+                        return RedirectToAction("../Productos");
                     }
                     else
                         return RedirectToAction("../Sondeos/FinalizarSondeo");
@@ -45,7 +46,7 @@ namespace Sondeo_web_7eam.Controllers
                 catch (Exception ex)
                 {
                     ModelState.AddModelError("", "No se puede finalizar un sondeo vacio");
-                    return View();
+                    return RedirectToAction("../Productos");
 
                 }
 
@@ -91,7 +92,7 @@ namespace Sondeo_web_7eam.Controllers
             else
             {
                 //Mensaje Flotante
-                ModelState.AddModelError("", "Ocurrio un error al intentar agregar un producto");
+                ModelState.AddModelError("", "No se puede registrar un producto sin un sondeo");
                 ViewBag.ID_CATEGORIA = new SelectList(db.CATEGORIA, "ID_CATEGORIA", "CATEGORIA1");
                 ViewBag.ID_MARCA = new SelectList(db.MARCA, "ID_MARCA", "MARCA1");
                 ViewBag.UNIDAD_MEDIDA = new SelectList(db.MEDIDA, "ID_MEDIDA", "MEDIDA1");

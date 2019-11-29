@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Crear nuevo Sondeo", "Create")
 </p>
 <table class="table">
     <tr>
@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.LOCALIZACION.LOCALIDAD)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_SONDEO }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID_SONDEO }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_SONDEO })
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_SONDEO }) |
+            @Html.ActionLink("Productos", "../Productos/Lista", new { id=item.ID_SONDEO }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_SONDEO })
         </td>
     </tr>
 }
