@@ -189,7 +189,7 @@ namespace Sondeo_web_7eam.Controllers
         }
 
         // GET: Sondeos/Delete/5
-        [Authorize(Roles ="encuestador")]
+        [Authorize(Roles ="usuariodefinitivo,admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -209,6 +209,11 @@ namespace Sondeo_web_7eam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            var p = db.PRODUCTO.Where(a => a.ID_SONDEO == id);
+            foreach (PRODUCTO item in p)
+            {
+                db.PRODUCTO.Remove(item);
+            }
             SONDEO sONDEO = db.SONDEO.Find(id);
             db.SONDEO.Remove(sONDEO);
             db.SaveChanges();
