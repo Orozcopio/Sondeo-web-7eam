@@ -462,6 +462,7 @@
     <Content Include="Views\Localizaciones\Index.cshtml" />
     <Content Include="Views\Sondeos\MisSondeos.cshtml" />
     <Content Include="Views\Home\listaProductos.cshtml" />
+    <Content Include="Views\Productos\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

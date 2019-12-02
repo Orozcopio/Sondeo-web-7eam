@@ -12,7 +12,6 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
-    //[Authorize(Roles="usuariodefinitivo")]
     public class SondeosController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
@@ -89,7 +88,7 @@ namespace Sondeo_web_7eam.Controllers
                     sONDEO.FINALIZADO = true;
                     db.Entry(sONDEO).State = EntityState.Modified;
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Missondeos");
                 }
                 else
                 {

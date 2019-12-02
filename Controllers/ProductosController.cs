@@ -10,7 +10,7 @@ using Sondeo_web_7eam.Models;
 
 namespace Sondeo_web_7eam.Controllers
 {
-    [Authorize(Roles = "usuariodefinitivo,encuestador")]
+    [Authorize(Roles = "encuestador")]
     public class ProductosController : Controller
     {
         private ConexionDBxUD db = new ConexionDBxUD();
@@ -27,6 +27,13 @@ namespace Sondeo_web_7eam.Controllers
         }
 
 
+        public ActionResult Lista(int? id)
+        {
+            var productos=db.PRODUCTO.Where(a => a.ID_SONDEO==id).Include(p => p.CATEGORIA).Include(p => p.MARCA).Include(p => p.MEDIDA).Include(p => p.SONDEO);
+            return View(productos.ToList());
+        }
+
+        [Authorize(Roles = "encuestador")]
         public ActionResult sinProductos()
         {
             if (ModelState.IsValid)
@@ -34,7 +41,8 @@ namespace Sondeo_web_7eam.Controllers
                 try
                 {
                     string logeado = User.Identity.Name.ToString();
-                    int axis = db.PRODUCTO.Where(a => a.SONDEO.ID_USUARIO == logeado).First().ID_PRODUCTO;
+                    int ultimo = db.SONDEO.Where(a => a.ID_USUARIO == logeado).OrderByDescending(x => x.ID_LOCAL).First().ID_SONDEO;
+                    int axis = db.PRODUCTO.Where(a => a.SONDEO.ID_SONDEO == ultimo).First().ID_PRODUCTO;
                     if (axis <=0)
                     {
                         ModelState.AddModelError("", "No se puede finalizar un sondeo vacio");
